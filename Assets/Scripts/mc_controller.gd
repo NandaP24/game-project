@@ -7,38 +7,32 @@ class_name MCController
 var speed_multiplier = 30.0
 var jump_multiplier = -30.0
 var direction = 0
-#const SPEED = 300.0
-#const JUMP_VELOCITY = -400.0
 
-@export_category("sword category")
-@export var is_attacking : bool = false
+var is_attacking = false
 
-#attack
-func set_animation():
-	if is_attacking:
-		$AnimationPlayer.play("attack")
-
-
-
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
+func _physics_process(delta):
+	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	#attack
-	#if Input.is_action_just_pressed("attack"):
-		#is_attacking = true
-	# Handle jump.
+
+	# Attack
+	if Input.is_action_just_pressed("attack") and not is_attacking:
+		is_attacking = true
+
+	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_power * jump_multiplier
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# Movement (SELALU AKTIF meskipun attack)
 	direction = Input.get_axis("move_left", "move_right")
-	if direction:
+
+	if direction != 0:
 		velocity.x = direction * speed * speed_multiplier
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * speed_multiplier)
-#func reset_state():
-	#is_attacking = false
 
 	move_and_slide()
+
+
+func reset_state():
+	is_attacking = false
