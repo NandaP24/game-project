@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name MCController
 
 @export var speed = 10.0
-@export var jump_power = 20
+@export var jump_power = 15
 
 var speed_multiplier = 30.0
 var jump_multiplier = -30.0
