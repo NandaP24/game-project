@@ -4,7 +4,7 @@ extends Node2D
 @export var animation_player : AnimationPlayer
 @export var  sprite : Sprite2D
 
-func  _process(delta):
+func  _process(_delta):
 	#flip char
 	if mc_controller.direction == 1:
 		sprite.flip_h = false
@@ -15,6 +15,8 @@ func  _process(delta):
 	if mc_controller.is_attacking:
 		animation_player.play("attack")
 		return
+	else :
+		animation_player.play("idle")
 #movement animation
 	if abs(mc_controller.velocity.x) > 0.0 :
 		animation_player.play("move")
