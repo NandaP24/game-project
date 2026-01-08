@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://drk2jw7mn5jd"]
+[gd_scene load_steps=7 format=4 uid="uid://drk2jw7mn5jd"]
 
 [ext_resource type="Texture2D" uid="uid://b5rnnr3vs6ak6" path="res://Assets/Sprites/Medieval_tiles_free2.png" id="1_c1hd0"]
+[ext_resource type="Script" uid="uid://b5xd0ofo5lx1g" path="res://Assets/Scenes/Area/platform.gd" id="1_ntboy"]
 [ext_resource type="PackedScene" uid="uid://cppyu0ihm7nxw" path="res://Assets/Scenes/mc.tscn" id="2_v6n71"]
+[ext_resource type="AudioStream" uid="uid://bu4giaj311mbc" path="res://Audio/UAS - Copy.mp3" id="3_v6n71"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ntboy"]
 texture = ExtResource("1_c1hd0")
@@ -2782,6 +2784,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ntboy")
 
 [node name="platform" type="Node2D"]
+script = ExtResource("1_ntboy")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(4, -69)
@@ -2791,3 +2794,8 @@ tile_set = SubResource("TileSet_nr1tg")
 [node name="MC" parent="." instance=ExtResource("2_v6n71")]
 position = Vector2(100, -68)
 scale = Vector2(1.02, 1.02)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_v6n71")
+autoplay = true
+parameters/looping = false
